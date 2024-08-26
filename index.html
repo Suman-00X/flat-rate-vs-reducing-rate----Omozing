@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>EMI Calculator</h1>
+    <form id="emiForm">
+        <label for="principal">Principal:</label>
+        <input type="number" id="principal" name="principal" required><br>
+
+        <label for="fixedRate">Fixed Interest Rate (Monthly):</label>
+        <input type="number" step="0.01" id="fixedRate" name="fixedRate" required><br>
+
+        <label for="reducingRate">Reducing Interest Rate (Monthly):</label>
+        <input type="number" step="0.01" id="reducingRate" name="reducingRate" required><br>
+
+        <label for="tenure">Tenure (in months):</label>
+        <input type="number" id="tenure" name="tenure" required><br>
+
+        <label for="emiStartDate">EMI Start Date:</label>
+        <input type="date" id="emiStartDate" name="emiStartDate" required><br>
+
+        <button type="button" onclick="calculateEMI()">Calculate</button>
+    </form>
+
+    <h2>Repayment Schedule: Flat Rate</h2>
+    <table id="flatRateTable">
+        <thead>
+            <tr>
+                <th>EMI Number</th>
+                <th>Date of Payment</th>
+                <th>EMI Amount</th>
+                <th>Principal Repaid</th>
+                <th>Interest Paid</th>
+                <th>Principal Dues Remaining</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Flat rate EMI calculation results will be inserted here -->
+        </tbody>
+    </table>
+
+    <h2>Repayment Schedule: Reducing Rate</h2>
+    <table id="reducingRateTable">
+        <thead>
+            <tr>
+                <th>EMI Number</th>
+                <th>Date of Payment</th>
+                <th>EMI Amount</th>
+                <th>Principal Repaid</th>
+                <th>Interest Paid</th>
+                <th>Principal Dues Remaining</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Reducing rate EMI calculation results will be inserted here -->
+        </tbody>
+    </table>
+
+    <script src="index.js"></script>
+</body>
+</html>
