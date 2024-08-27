@@ -5,6 +5,14 @@ function calculateEMI() {
     const tenure = parseInt(document.getElementById('tenure').value);
     const emiStartDate = new Date(document.getElementById('emiStartDate').value);
 
+    // Function to format date to dd/mm/yyyy
+    function formatDate(date) {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    }
+
     // Calculate flat rate EMI (monthly)
     const flatInterest = principal * fixedRate * tenure;
     const flatEMI = (principal + flatInterest) / tenure;
@@ -22,11 +30,11 @@ function calculateEMI() {
         flatRemainingPrincipal -= principalRepaid;
 
         row.insertCell(0).textContent = i;
-        row.insertCell(1).textContent = dateOfPayment.toLocaleDateString();
-        row.insertCell(2).textContent = flatEMI.toFixed(0);
-        row.insertCell(3).textContent = principalRepaid.toFixed(0);
-        row.insertCell(4).textContent = interest.toFixed(0);
-        row.insertCell(5).textContent = flatRemainingPrincipal.toFixed(0);
+        row.insertCell(1).textContent = formatDate(dateOfPayment);
+        row.insertCell(2).textContent = flatEMI.toFixed(2);
+        row.insertCell(3).textContent = principalRepaid.toFixed(2);
+        row.insertCell(4).textContent = interest.toFixed(2);
+        row.insertCell(5).textContent = flatRemainingPrincipal.toFixed(2);
     }
 
     // Calculate reducing rate EMI (monthly)
@@ -46,10 +54,10 @@ function calculateEMI() {
         outstandingPrincipal -= principalRepaid;
 
         row.insertCell(0).textContent = i;
-        row.insertCell(1).textContent = dateOfPayment.toLocaleDateString();
-        row.insertCell(2).textContent = reducingEMI.toFixed(0);
-        row.insertCell(3).textContent = principalRepaid.toFixed(0);
-        row.insertCell(4).textContent = interest.toFixed(0);
-        row.insertCell(5).textContent = outstandingPrincipal.toFixed(0);
+        row.insertCell(1).textContent = formatDate(dateOfPayment);
+        row.insertCell(2).textContent = reducingEMI.toFixed(2);
+        row.insertCell(3).textContent = principalRepaid.toFixed(2);
+        row.insertCell(4).textContent = interest.toFixed(2);
+        row.insertCell(5).textContent = outstandingPrincipal.toFixed(2);
     }
 }
