@@ -27,6 +27,34 @@
         <button type="button" onclick="calculateEMI()">Calculate</button>
     </form>
 
+    <h2>Comparison of Flat Rate vs Reducing Rate</h2>
+<table id="comparisonTable">
+    <thead>
+        <tr>
+            <th>Rate Type</th>
+            <th>EMI Per Month</th>
+            <th>Total Interest Paid</th>
+            <th>Total Amount Paid</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td data-label="Rate Type">Flat Rate</td>
+            <td data-label="EMI Per Month" id="flatEMIPerMonth"></td>
+            <td data-label="Total Interest Paid" id="totalInterestFlat"></td>
+            <td data-label="Total Amount Paid" id="totalAmountFlat"></td>
+        </tr>
+        <tr>
+            <td data-label="Rate Type">Reducing Rate</td>
+            <td data-label="EMI Per Month" id="reducingEMIPerMonth"></td>
+            <td data-label="Total Interest Paid" id="totalInterestReducing"></td>
+            <td data-label="Total Amount Paid" id="totalAmountReducing"></td>
+        </tr>
+        
+    </tbody>
+</table>
+
+
     <h2>Repayment Schedule: Flat Rate</h2>
     <table id="flatRateTable">
         <thead>

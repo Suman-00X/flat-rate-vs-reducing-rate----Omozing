@@ -13,6 +13,12 @@ function calculateEMI() {
         return `${day}/${month}/${year}`;
     }
 
+    // Variables to store total payments and interest
+    let totalEMIFlat = 0;
+    let totalInterestFlat = 0;
+    let totalEMIReducing = 0;
+    let totalInterestReducing = 0;
+
     // Calculate flat rate EMI (monthly)
     const flatInterest = principal * fixedRate * tenure;
     const flatEMI = (principal + flatInterest) / tenure;
@@ -31,10 +37,14 @@ function calculateEMI() {
 
         row.insertCell(0).textContent = i;
         row.insertCell(1).textContent = formatDate(dateOfPayment);
-        row.insertCell(2).textContent = flatEMI.toFixed(2);
-        row.insertCell(3).textContent = principalRepaid.toFixed(2);
-        row.insertCell(4).textContent = interest.toFixed(2);
-        row.insertCell(5).textContent = flatRemainingPrincipal.toFixed(2);
+        row.insertCell(2).textContent = flatEMI.toFixed(0);
+        row.insertCell(3).textContent = principalRepaid.toFixed(0);
+        row.insertCell(4).textContent = interest.toFixed(0);
+        row.insertCell(5).textContent = flatRemainingPrincipal.toFixed(0);
+
+        totalEMIFlat += flatEMI;
+        totalInterestFlat += interest;
+        console.log("total flat interest : ",totalInterestFlat)
     }
 
     // Calculate reducing rate EMI (monthly)
@@ -55,9 +65,21 @@ function calculateEMI() {
 
         row.insertCell(0).textContent = i;
         row.insertCell(1).textContent = formatDate(dateOfPayment);
-        row.insertCell(2).textContent = reducingEMI.toFixed(2);
-        row.insertCell(3).textContent = principalRepaid.toFixed(2);
-        row.insertCell(4).textContent = interest.toFixed(2);
-        row.insertCell(5).textContent = outstandingPrincipal.toFixed(2);
+        row.insertCell(2).textContent = reducingEMI.toFixed(0);
+        row.insertCell(3).textContent = principalRepaid.toFixed(0);
+        row.insertCell(4).textContent = interest.toFixed(0);
+        row.insertCell(5).textContent = outstandingPrincipal.toFixed(0);
+
+        totalEMIReducing += reducingEMI;
+        totalInterestReducing += interest;
     }
+
+    // Populate the comparison table
+    document.getElementById('flatEMIPerMonth').textContent = flatEMI.toFixed(0);
+    document.getElementById('totalInterestFlat').textContent = totalInterestFlat.toFixed(0);
+    document.getElementById('totalAmountFlat').textContent = (totalEMIFlat).toFixed(0);
+
+    document.getElementById('reducingEMIPerMonth').textContent = reducingEMI.toFixed(0);
+    document.getElementById('totalInterestReducing').textContent = totalInterestReducing.toFixed(0);
+    document.getElementById('totalAmountReducing').textContent = (totalEMIReducing).toFixed(0);
 }
